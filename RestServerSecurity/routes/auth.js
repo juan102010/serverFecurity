@@ -11,11 +11,11 @@ const { loginValidation } = require('../controllers/auth');
 const router = Router();
 
 router.post('/login',[
-    //validamos que estan enviado los campos de correo y password para ingresar
+    //Validate that they are sending the email and password fields to log in.
     check('Ide_Usuario', '00001').isEmail(),
     check('Nom_Dependencia', '00002').not().isEmpty(),
     validateFields
-    //en la parte de (loginValidation) miramos las validacion necesarias para ingresar
+    //in the (loginValidation) part we look at the validations needed to log in.
 ],loginValidation );
 
 

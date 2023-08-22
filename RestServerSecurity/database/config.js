@@ -10,11 +10,11 @@ const dbConnectionSec = async() => {
             useUnifiedTopology: true
         });
     
-        console.log('Estamos conectados a la base de datos de Security');
+        console.log('We are connected to the Security');
 
     } catch (error) {
         console.log(error);
-        throw new Error('Error a la hora de iniciar la base de datos de Security');
+        throw new Error('Error when starting the Security database');
     }
 
 
