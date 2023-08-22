@@ -3,18 +3,18 @@ const USU_Usuario = require('../models/usu_usuario');
 
 
 
-const emailExiste = async( correo = '' ) => {
+const  emailExists= async( correo = '' ) => {
 
-    // Verificar si el correo existe
+    // Verify if the email exists
     const existeEmail = await USU_Usuario.findOne({ correo });
     if ( existeEmail ) {
         throw new Error('00008');
     }
 }
 
-const existeUsuarioPorId = async( USU_Id=0 ) => {
+const existsUserById = async( USU_Id=0 ) => {
 
-    // Verificar si el id existe
+    // Check if the id exists
     const existeUsuario = await USU_Usuario.findOne({USU_Id});
     if ( !existeUsuario ) {
         throw new Error('00009');
@@ -24,7 +24,7 @@ const existeUsuarioPorId = async( USU_Id=0 ) => {
 
 
 module.exports = {
-    emailExiste,
-    existeUsuarioPorId
+    emailExists,
+    existsUserById
 }
 

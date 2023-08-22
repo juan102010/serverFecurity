@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 
 
-const generarJWT = ( Ide_Usuario = '',Emp_Id=0 ) => {
+const generateJWT = ( Ide_Usuario = '',Emp_Id=0 ) => {
 
     return new Promise( (resolve, reject) => {
 
@@ -27,6 +27,6 @@ const generarJWT = ( Ide_Usuario = '',Emp_Id=0 ) => {
 
 
 module.exports = {
-    generarJWT
+    generateJWT
 }
 

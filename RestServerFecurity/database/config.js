@@ -11,11 +11,11 @@ const dbConnectionFec = async() => {
             useUnifiedTopology: true
         });
     
-        console.log('Estamos conectados a la base de datos de Fecurity');
+        console.log('We are connected to the Fecurity database.');
 
     } catch (error) {
         console.log(error);
-        throw new Error('Error a la hora de iniciar la base de datos de Fecurity');
+        throw new Error('Error when starting the Fecurity database');
     }
 
 
