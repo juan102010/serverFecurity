@@ -5,17 +5,17 @@ const bcryptjs = require('bcryptjs');
 const USU_Usuario = require('../models/usu_usuario');
 
 
-//creacion de un metodo para traer todos los usuarios de la base de datos 
-//con la condicien de que el estado sea en True ya que esto significa 
-//que estan activos y que no han cido borrados 
+//creation of a method to fetch all the users from the database
+//with the condition that the status is set to True as this means 
+//that are active and that have not been deleted
 
 const userGet = async(req = request, res = response) => {
-//le damos un limite de paginado 
+//we give you a paging limit 
     const { limite = 5, desde = 0 } = req.query;
-    //revisa el estado de los usuarios
+    //check the status of users
     const queryAct = { USU_Activo: true };
     const queryInAct = { USU_Activo: false };
-    //genera el cuerpo que va a devolver
+    //generates the body that will return
     const [ total_Act,total_InAct, usuario ] = await Promise.all([
         USU_Usuario.countDocuments(queryAct),
         USU_Usuario.countDocuments(queryInAct),
@@ -23,7 +23,7 @@ const userGet = async(req = request, res = response) => {
             .skip( Number( desde ) ) 
             .limit(Number( limite ))
     ]);
-    //cuerpo
+    //body
     res.json({
         total_Act,
         total_InAct,
@@ -31,10 +31,9 @@ const userGet = async(req = request, res = response) => {
     });
 }
 
-//creacion de un metodo para traer todos los usuarios de la base de datos 
-//pero por el id de la base de datos 
+// Method to search and fetch a user by his USU_ID
 const userGetById = async(req, res = response) => {
-    //busca el usu_Id para compararlo contra la base de datos
+    //look up the usu_Id to compare it against the database
     const { USU_Id } = req.params;
     
 
@@ -43,7 +42,7 @@ const userGetById = async(req, res = response) => {
     res.json(usuario);
 }
 
-//creacion de un metodo para crear un usuario nuevo 
+//creation of a method to create a new user
 //TODO falta implementar el id auto incrementador 
 const userPost = async(req, res = response) => {
     
@@ -63,7 +62,7 @@ const userPost = async(req, res = response) => {
         USU_Activo });
 
    
-    // Guardar en BD
+    // Save to BD
     await usuario.save();
 
     res.json({
@@ -71,7 +70,7 @@ const userPost = async(req, res = response) => {
     });
 }
 
-//creacion de un metodo para actualizar un registro 
+//creating a method for updating a record
 const userPut = async(req, res = response) => {
 
     const { USU_Id } = req.params;
@@ -82,17 +81,14 @@ const userPut = async(req, res = response) => {
     res.json(usuario);
 }
 
-
+//logical deletion of a user
 const userDelete = async(req, res = response) => {
 
     const { USU_Id } = req.params;
     const usuario = await USU_Usuario.findOneAndUpdate( {USU_Id:USU_Id}, { USU_Activo: false } );
-
-    
+ 
     res.json(usuario);
 }
-
-
 
 
 module.exports = {

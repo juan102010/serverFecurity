@@ -2,7 +2,7 @@ const { response } = require('express');
 
 const SBRTUsuario = require('../models/sbrt_usuario');
 
-const { generarJWT } = require('../helpers/generar-jwt');
+const { generateJWT } = require('../helpers/generar-jwt');
 
 //in loginValidation we will verify that:
 //Password and email are correct user status 
@@ -32,7 +32,7 @@ const loginValidation = async(req, res = response) => {
         }
 
         // Generar el JWT
-        const token = await generarJWT( user.Ide_Usuario,user.Emp_Id );
+        const token = await generateJWT( user.Ide_Usuario,user.Emp_Id );
         //JSON que se va a devolver
         res.json({
             user,

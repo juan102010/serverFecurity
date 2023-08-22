@@ -10,11 +10,11 @@ const UsuarioSchema = Schema({
     },
     USU_Nombres: {
         type: String, 
-        required: [true, 'El nombre es obligatorio']
+        required: [true, 'The name is required']
     },
     USU_Email: {
         type: String,
-        required: [true, 'El USU_Email es obligatorio'],
+        required: [true, 'The USU_Email is mandatory'],
         unique: true
     },
     USU_Celular: {
@@ -26,7 +26,7 @@ const UsuarioSchema = Schema({
     },
     Ide_Usuario: {
         type: String,
-        required: [true, 'El Ide_Usuario es obligatorio'],
+        required: [true, 'The Ide_Usuario is mandatory'],
        
     },
     USU_FechaUltimaActualizacion: {
