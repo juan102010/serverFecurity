@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 
-const { dbConnectionFec,dbConnectionSec } = require('../database/config');
+const { dbConnectionFec } = require('../database/config');
 
 class Server {
 
@@ -10,7 +10,7 @@ class Server {
         this.port = process.env.PORT;
 
         this.usuariosPath = '/api/users';
-        this.authPath     = '/api/auth';
+
 
         // Conectar a base de datos
         this.conectarDB();
@@ -24,7 +24,6 @@ class Server {
 
     async conectarDB() {
         await dbConnectionFec();
-        await dbConnectionSec();
     }
 
 
@@ -43,7 +42,6 @@ class Server {
 
     routes() {
         
-        this.app.use( this.authPath, require('../routes/auth'));
         this.app.use( this.usuariosPath, require('../routes/usuarios'));
     }
 

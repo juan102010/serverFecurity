@@ -54,15 +54,11 @@ router.put('/:USU_Id',[
 
 router.delete('/:USU_Id',[
     //valida token 
-    //TODO svalidarJWT,
+    validarJWT,
     //verifica si existe el id ingresaso
     check('USU_Id').custom( existeUsuarioPorId ),
     validateFields
 ],userDelete );
-
-
-
-
 
 
 module.exports = router;
