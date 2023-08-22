@@ -1,4 +1,4 @@
 # Notas:
-implementacion del backend de Security
+Security backend implementation
 
-Recuerden que deben de ejecutar ```npm install``` para reconstruir los módulos de Node.
+Remember to run ``npm install`` to rebuild the Node modules.

@@ -1,13 +1,12 @@
 const { response } = require('express');
-const bcryptjs = require('bcryptjs')
 
 const SBRTUsuario = require('../models/sbrt_usuario');
 
 const { generarJWT } = require('../helpers/generar-jwt');
 
-//en loginValidation vamos a verificar que:
-//el Password y correo sean correctos estado del usuario 
-//si lo son generamos un token con la funcion generarJWT 
+//in loginValidation we will verify that:
+//Password and email are correct user status 
+//if they are we generate a token with the function generateJWT
 
 const loginValidation = async(req, res = response) => {
 
@@ -15,25 +14,25 @@ const loginValidation = async(req, res = response) => {
 
     try {
       
-        // Verificar si el email existe
+        // Verify if the email exists
         const user = await SBRTUsuario.findOne({ Ide_Usuario });
 
         
         if ( !user ) {
             return res.status(400).json({
                 code:'00003',
-                msg: 'Usuario / Password no son correctos - correo'
+                msg: 'User / Password are not correct - mail'
             });
         }
         if (Nom_Dependencia != user.Nom_Dependencia ) {
             return res.status(400).json({
                 code:'00004',
-                msg: 'Usuario / Password no son correctos - password'
+                msg: 'User / Password are not correct - password'
             });
         }
 
         // Generar el JWT
-        const token = await generarJWT( user.Ide_Usuario );
+        const token = await generarJWT( user.Ide_Usuario,user.Emp_Id );
         //JSON que se va a devolver
         res.json({
             user,
@@ -45,7 +44,7 @@ const loginValidation = async(req, res = response) => {
         console.log(error)
         res.status(500).json({
             code:'00006',
-            msg: 'Hable con el administrador'
+            msg: 'Talk to the administrator'
         });
     }   
 

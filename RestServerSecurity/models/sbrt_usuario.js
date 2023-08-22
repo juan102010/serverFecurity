@@ -3,17 +3,17 @@ const { Schema, model } = require('mongoose');
 const SBRT_UsuariosSchema = Schema({
     Ide_Usuario: {
         type: String,
-        required: [true, 'El Ide_Usuario es obligatorio'],
+        required: [true, 'The Ide_Usuario is mandatory'],
         unique: true
     },
     Nom_Dependencia: {
         type: String,
-        required: [true, 'El Nom_Dependencia es obligatorio'],
+        required: [true, 'The Nom_Dependencia is mandatory'],
         
     },
     Emp_Id: {
         type: Number,
-        required: [true, 'El Emp_Id es obligatorio'],  
+        required: [true, 'The Emp_Id is mandatory'],  
 
     },
 
