@@ -66,8 +66,19 @@ const usersLoginGet = async(req = request, res = response) => {
         });
     }
 
+//creating a method for updating a record
+const userLoginPut = async(req, res = response) => {
+
+    
+    const {  Ide_Usuario,Emp_Id,...resto } = req.body;
+  
+    const usuario = await SBRTUsuario.findOneAndUpdate( {Ide_Usuario:Ide_Usuario}, resto );
+
+    res.json(usuario);
+}
 
 module.exports = {
     loginValidation,
-    usersLoginGet
+    usersLoginGet,
+    userLoginPut
 }

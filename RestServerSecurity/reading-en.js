@@ -21,4 +21,6 @@
     "00017"="Invalid token - user does not exist DB"
     "00018"="Invalid token - stateful user: false"
     "00019"="Invalid token to check users"
+    "00020"="The Ide_User you are trying to modify is not registered in the database."
+    "00021"="Email is mandatory "
 }
