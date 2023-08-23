@@ -2,14 +2,20 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 
 
-const { validateFields } = require('../middlewares/validate-fields');
+const { validateFields,validateLog } = require('../middlewares');
 
 
-const { loginValidation } = require('../controllers/auth');
+const { loginValidation,usersLoginGet } = require('../controllers/auth');
 
 
 const router = Router();
 
+router.get('/',[
+    //Valid that the token that is sent by parameters is correct.
+    validateLog,
+
+    validateFields
+], usersLoginGet );
 router.post('/login',[
     //Validate that they are sending the email and password fields to log in.
     check('Ide_Usuario', '00001').isEmail(),
@@ -20,4 +26,5 @@ router.post('/login',[
 
 
 
+ 
 module.exports = router;

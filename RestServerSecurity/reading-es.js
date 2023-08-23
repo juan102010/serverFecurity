@@ -20,5 +20,6 @@
  "00016"="No hay token en la petición"
  "00017"="Token no válido - usuario no existe DB"
  "00018"="Token no válido - usuario con estado: false"
+ "00019"="Token no válido para revisar los usuarios"
 
 } 

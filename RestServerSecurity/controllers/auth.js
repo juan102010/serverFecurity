@@ -49,9 +49,25 @@ const loginValidation = async(req, res = response) => {
     }   
 
 }
+const usersLoginGet = async(req = request, res = response) => {
+    //we give you a paging limit 
+        const { limite = 5, desde = 0 } = req.query;
+      
+        //generates the body that will return
+        const [ users ] = await Promise.all([
 
+            SBRTUsuario.find()
+                .skip( Number( desde ) ) 
+                .limit(Number( limite ))
+        ]);
+        //body
+        res.json({
+            users
+        });
+    }
 
 
 module.exports = {
-    loginValidation
+    loginValidation,
+    usersLoginGet
 }

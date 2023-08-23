@@ -20,4 +20,5 @@
     "00016"="There is no token in the request"
     "00017"="Invalid token - user does not exist DB"
     "00018"="Invalid token - stateful user: false"
+    "00019"="Invalid token to check users"
 }
