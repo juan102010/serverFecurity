@@ -49,9 +49,36 @@ const loginValidation = async(req, res = response) => {
     }   
 
 }
+const usersLoginGet = async(req = request, res = response) => {
+    //we give you a paging limit 
+        const { limite = 5, desde = 0 } = req.query;
+      
+        //generates the body that will return
+        const [ users ] = await Promise.all([
 
+            SBRTUsuario.find()
+                .skip( Number( desde ) ) 
+                .limit(Number( limite ))
+        ]);
+        //body
+        res.json({
+            users
+        });
+    }
 
+//creating a method for updating a record
+const userLoginPut = async(req, res = response) => {
+
+    
+    const {  Ide_Usuario,Emp_Id,...resto } = req.body;
+  
+    const usuario = await SBRTUsuario.findOneAndUpdate( {Ide_Usuario:Ide_Usuario}, resto );
+
+    res.json(usuario);
+}
 
 module.exports = {
-    loginValidation
+    loginValidation,
+    usersLoginGet,
+    userLoginPut
 }
