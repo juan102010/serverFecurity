@@ -19,4 +19,9 @@ const SBRT_UsuariosSchema = Schema({
 
 });
 
+SBRT_UsuariosSchema.methods.toJSON = function() {
+    const { __v,_id, ...usuario  } = this.toObject();
+    return usuario;
+}
+
 module.exports = model( 'SBRT_Usuario', SBRT_UsuariosSchema ,'SBRT_Usuario');

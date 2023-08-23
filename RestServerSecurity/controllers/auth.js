@@ -65,6 +65,28 @@ const usersLoginGet = async(req = request, res = response) => {
             users
         });
     }
+//creation of a method to create a new user
+//TODO falta implementar el id auto incrementador 
+const userLoginPost = async(req, res = response) => {
+    
+    const {
+        Ide_Usuario, 
+        Nom_Dependencia, 
+        Emp_Id
+         } = req.body;
+    const userLog = new SBRTUsuario({ 
+        Ide_Usuario, 
+        Nom_Dependencia, 
+        Emp_Id });
+
+   
+    // Save to BD
+    await userLog.save();
+
+    res.json({
+        userLog
+    });
+}
 
 //creating a method for updating a record
 const userLoginPut = async(req, res = response) => {
@@ -78,7 +100,8 @@ const userLoginPut = async(req, res = response) => {
 }
 
 module.exports = {
-    loginValidation,
+    loginValidation, 
     usersLoginGet,
-    userLoginPut
+    userLoginPut,
+    userLoginPost
 }
