@@ -46,10 +46,30 @@ const rolPost = async (req, res = response) => {
         role
     });
 }
+//creating a method for updating a record
+const rolPut = async(req, res = response) => {
 
+    
+    const {  Ide_Rol,...resto } = req.body;
+  
+    const rol = await SBRTRol.findOneAndUpdate( {Ide_Rol:Ide_Rol}, resto );
+
+    res.json(rol);
+}
+
+//logical deletion of a user
+const rolDelete = async(req, res = response) => {
+
+    const { Ide_Rol } = req.params;
+    const rol = await SBRTRol.findOneAndUpdate( {Ide_Rol:Ide_Rol}, { Est_Habilitado: false } );
+ 
+    res.json(rol);
+}
 
 
 module.exports = {
     rolGet,
-    rolPost
+    rolPost,
+    rolPut,
+    rolDelete
 }
