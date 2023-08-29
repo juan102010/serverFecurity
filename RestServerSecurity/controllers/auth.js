@@ -66,9 +66,8 @@ const usersLoginGet = async(req = request, res = response) => {
         });
     }
 //creation of a method to create a new user
-//TODO falta implementar el id auto incrementador 
+
 const userLoginPost = async(req, res = response) => {
-    
     const {
         Ide_Usuario, 
         Nom_Dependencia, 
