@@ -1,5 +1,6 @@
 
 const SBRT_Usuario = require('../models/sbrt_usuario');
+const SBRT_Rol = require('../models/sbrt_rol');
 
 const  emailExistsLogin= async( correo = '' ) => {
     // Verify if the email exists
@@ -15,8 +16,16 @@ const  emailExists= async( correo = '' ) => {
         throw new Error('00008');
     }
 }
+const  existeRol= async( rol = 0 ) => {
+    // Verify if the email exists
+    const existeRol = await SBRT_Rol.findOne({Ide_Rol: rol }).exec();
+    if ( !existeRol ) {
+        throw new Error('00024');
+    }
+}
 module.exports = {
     emailExistsLogin,
-    emailExists
+    emailExists,
+    existeRol
 }
 
