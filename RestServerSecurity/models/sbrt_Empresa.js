@@ -21,7 +21,7 @@ const SBRT_EmpresaSchema = Schema({
     Emp_Descripcion: {
         type: String,
         required: [true, 'The Emp_Descripcion is mandatory'],
-        
+         
     }
 });
 SBRT_EmpresaSchema.methods.toJSON = function() {

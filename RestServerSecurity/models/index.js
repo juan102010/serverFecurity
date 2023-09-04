@@ -5,6 +5,7 @@ const Role = require('./sbrt_rol');
 const CompanyReport = require('./sbrt_empresareportes');
 const Application = require('./sbrt_aplicacion');
 const Empresa = require('./sbrt_Empresa');
+const Module = require('./sbrt_modulo');
 
 
 
@@ -16,4 +17,5 @@ module.exports = {
     CompanyReport,
     Application,
     Empresa,
+    Module
 }
