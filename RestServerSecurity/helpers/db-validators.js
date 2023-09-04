@@ -1,4 +1,4 @@
-const { User,RolByUser,Role,CompanyReport,Application } = require('../models');
+const { User,RolByUser,Role,CompanyReport,Application,Empresa } = require('../models');
 
 const  emailExistsLogin= async( correo = '' ) => {
     // Verify if the email exists
@@ -49,6 +49,13 @@ const  notExistIdApplication= async( Ide_Aplicacion = 0 ) => {
         throw new Error('00028');
     }
 }
+const  notExistIdCompany= async( Emp_Id = 0 ) => {
+    // Verify if the email exists
+    const existIdcompany = await Empresa.findOne({Emp_Id: Emp_Id }).exec();
+    if ( !existIdcompany ) {
+        throw new Error('00029');
+    }
+}
 module.exports = {
     emailExistsLogin,
     emailExists,
@@ -56,6 +63,7 @@ module.exports = {
     notExistemailRolByUser,
     existsemailRolByUser,
     notExistIdReport,
-    notExistIdApplication
+    notExistIdApplication,
+    notExistIdCompany
 }
 
