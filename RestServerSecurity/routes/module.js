@@ -36,13 +36,6 @@ router.post('/',[
     check('Des_DescripcionModulo', '00023').not().isEmpty(),
     validateFields
 ], modulePost, );
-//metodo delete
-router.delete('/:Ide_Rol', [
-    // //Valid token 
-    // validateJWT,
-    // //check if the entered id exists
-    // check('Ide_Rol').custom( notExistIdModule ),
-],moduleDelete, );
 
 
  
