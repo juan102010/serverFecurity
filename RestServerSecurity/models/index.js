@@ -7,6 +7,7 @@ const Application = require('./sbrt_aplicacion');
 const Empresa = require('./sbrt_Empresa');
 const Module = require('./sbrt_modulo');
 const Functionality = require('./sbrt_funcionalidad');
+const FunctionalityByRole = require('./sbrt_funcionalidad_por_rol');
 
 
 
@@ -19,5 +20,6 @@ module.exports = {
     Application,
     Empresa,
     Module,
-    Functionality
+    Functionality,
+    FunctionalityByRole
 }

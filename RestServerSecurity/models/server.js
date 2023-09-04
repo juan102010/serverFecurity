@@ -10,14 +10,15 @@ class Server {
         this.port = process.env.PORT;
 
         this.paths = {
-            auth:           '/api/auth',
-            rol:            '/api/rol',
-            rolByUser:      '/api/rolByUser',
-            companyReport:  '/api/companyReport',
-            application:    '/api/application',
-            company:        '/api/company',
-            modules:        '/api/module',
-            functionality:  '/api/functionality'
+            auth:                 '/api/auth',
+            rol:                  '/api/rol',
+            rolByUser:            '/api/rolByUser',
+            companyReport:        '/api/companyReport',
+            application:          '/api/application',
+            company:              '/api/company',
+            modules:              '/api/module',
+            functionality:        '/api/functionality',
+            functionalityByRole:  '/api/functionalityByRole'
            
         }
 
@@ -58,6 +59,7 @@ class Server {
         this.app.use( this.paths.company, require('../routes/company'));
         this.app.use( this.paths.modules, require('../routes/module'));
         this.app.use( this.paths.functionality, require('../routes/functionality'));
+        this.app.use( this.paths.functionalityByRole, require('../routes/functionality_by_role'));
        
     }
 
