@@ -55,19 +55,11 @@ const modulePut = async(req, res = response) => {
     res.json(modul);
 }
 
-//logical deletion of a user
-const moduleDelete = async(req, res = response) => {
 
-    const { Ide_Rol } = req.params;
-    const rol = await SBRTRol.findOneAndUpdate( {Ide_Rol:Ide_Rol}, { Est_Habilitado: false } );
- 
-    res.json(rol);
-}
 
 
 module.exports = {
     moduleGet,
     modulePost,
-    modulePut,
-    moduleDelete
+    modulePut
 }
