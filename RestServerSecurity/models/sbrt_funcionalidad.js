@@ -23,9 +23,9 @@ const SBRT_FuncionalidadSchema = Schema({
 
 });
 SBRT_FuncionalidadSchema.methods.toJSON = function() {
-    const { __v,_id, ...rol  } = this.toObject();
+    const { __v,_id, ...funcionalidad  } = this.toObject();
    
-    return rol;
+    return funcionalidad;
 }
 
 
