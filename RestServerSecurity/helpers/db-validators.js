@@ -2,6 +2,7 @@
 const SBRT_Usuario = require('../models/sbrt_usuario');
 const SBRT_Rol = require('../models/sbrt_rol');
 const SBRTRolByUser = require('../models/sbrt_rolporusuario');
+const SBRT_EmpresaReporte = require('../models/sbrt_empresareportes');
 
 const  emailExistsLogin= async( correo = '' ) => {
     // Verify if the email exists
@@ -38,11 +39,19 @@ const  existeRol= async( rol = 0 ) => {
         throw new Error('00024');
     }
 }
+const  notExistIdReport= async( Ere_Id = 0 ) => {
+    // Verify if the email exists
+    const existIdReport = await SBRT_EmpresaReporte.findOne({Ere_Id: Ere_Id }).exec();
+    if ( !existIdReport ) {
+        throw new Error('00027');
+    }
+}
 module.exports = {
     emailExistsLogin,
     emailExists,
     existeRol,
     notExistemailRolByUser,
-    existsemailRolByUser
+    existsemailRolByUser,
+    notExistIdReport
 }
 
