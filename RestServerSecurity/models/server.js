@@ -14,7 +14,8 @@ class Server {
             rol:            '/api/rol',
             rolByUser:      '/api/rolByUser',
             companyReport:  '/api/companyReport',
-            application:    '/api/application'
+            application:    '/api/application',
+            company:        '/api/company'
            
         }
 
@@ -52,6 +53,7 @@ class Server {
         this.app.use( this.paths.rolByUser, require('../routes/rolbyuser'));
         this.app.use( this.paths.companyReport, require('../routes/companyreport'));
         this.app.use( this.paths.application, require('../routes/application'));
+        this.app.use( this.paths.company, require('../routes/company'));
        
     }
 
