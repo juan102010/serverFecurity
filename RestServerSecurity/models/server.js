@@ -9,9 +9,10 @@ class Server {
         this.app  = express();
         this.port = process.env.PORT;
 
-        this.authPath          = '/api/auth';
-        this.rolPath           = '/api/rol';
-        this.rolByUserPath     = '/api/rolByUser';
+        this.authPath             = '/api/auth';
+        this.rolPath              = '/api/rol';
+        this.rolByUserPath        = '/api/rolByUser';
+        this.companyReportPath    = '/api/companyReport';
 
         // Conectar a base de datos
         this.connectDB();
@@ -46,6 +47,7 @@ class Server {
         this.app.use( this.authPath, require('../routes/auth'));
         this.app.use( this.rolPath, require('../routes/rol'));
         this.app.use( this.rolByUserPath, require('../routes/rolbyuser'));
+        this.app.use( this.companyReportPath, require('../routes/companyreport'));
        
     }
 
