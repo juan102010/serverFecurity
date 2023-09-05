@@ -7,12 +7,12 @@ const SBRT_EmpresaSchema = Schema({
     Emp_Nombre: {
         type: String,
         required: [true, 'The Emp_Nombre is mandatory'],
-        
+
     },
     Emp_Esquema: {
         type: String,
         required: [true, 'The Emp_Esquema is mandatory'],
-        
+
     },
     Emp_Estado: {
         type: Boolean,
@@ -21,14 +21,14 @@ const SBRT_EmpresaSchema = Schema({
     Emp_Descripcion: {
         type: String,
         required: [true, 'The Emp_Descripcion is mandatory'],
-         
+
     }
 });
-SBRT_EmpresaSchema.methods.toJSON = function() {
-    const { __v,_id, ...company  } = this.toObject();
-   
+SBRT_EmpresaSchema.methods.toJSON = function () {
+    const { __v, _id, ...company } = this.toObject();
+
     return company;
 }
 
 
-module.exports = model( 'SBRT_Empresa', SBRT_EmpresaSchema ,'SBRT_Empresa');
+module.exports = model('SBRT_Empresa', SBRT_EmpresaSchema, 'SBRT_Empresa');

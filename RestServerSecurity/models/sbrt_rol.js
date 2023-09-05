@@ -7,7 +7,7 @@ const SBRT_RolSchema = Schema({
     Des_DescripcionRol: {
         type: String,
         required: [true, 'The Des_DescripcionRol is mandatory'],
-        
+
     },
     Est_Habilitado: {
         type: Boolean,
@@ -15,16 +15,16 @@ const SBRT_RolSchema = Schema({
     },
     Emp_Id: {
         type: Number,
-        required: [true, 'The Emp_Id is mandatory'],  
+        required: [true, 'The Emp_Id is mandatory'],
 
     },
 
 });
-SBRT_RolSchema.methods.toJSON = function() {
-    const { __v,_id, ...rol  } = this.toObject();
-   
+SBRT_RolSchema.methods.toJSON = function () {
+    const { __v, _id, ...rol } = this.toObject();
+
     return rol;
 }
 
 
-module.exports = model( 'SBRT_Roles', SBRT_RolSchema ,'SBRT_Rol');
+module.exports = model('SBRT_Roles', SBRT_RolSchema, 'SBRT_Rol');

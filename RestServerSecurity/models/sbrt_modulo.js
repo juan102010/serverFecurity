@@ -10,14 +10,14 @@ const SBRT_ModuloSchema = Schema({
     Des_DescripcionModulo: {
         type: String,
         required: [true, 'The Des_DescripcionModulo is mandatory'],
-        
+
     }
 });
-SBRT_ModuloSchema.methods.toJSON = function() {
-    const { __v,_id, ...company  } = this.toObject();
-   
+SBRT_ModuloSchema.methods.toJSON = function () {
+    const { __v, _id, ...company } = this.toObject();
+
     return company;
 }
 
 
-module.exports = model( 'SBRT_Modulo', SBRT_ModuloSchema ,'SBRT_Modulo');
+module.exports = model('SBRT_Modulo', SBRT_ModuloSchema, 'SBRT_Modulo');

@@ -2,17 +2,17 @@ const { response } = require('express');
 
 const SBRTRol = require('../models/sbrt_rol');
 
-
+//Function to obtain all the roles registered in the database.
 const rolGet = async (req = request, res = response) => {
 
     const { limite = 5, desde = 0 } = req.query;
     const query = { Est_Habilitado: true };
 
-    const [ total, rol ] = await Promise.all([
+    const [total, rol] = await Promise.all([
         SBRTRol.countDocuments(query),
         SBRTRol.find(query)
-            .skip( Number( desde ) )
-            .limit(Number( limite ))
+            .skip(Number(desde))
+            .limit(Number(limite))
     ]);
 
     res.json({
@@ -20,24 +20,24 @@ const rolGet = async (req = request, res = response) => {
         rol
     });
 }
-
+//Function to create roles in the database
 const rolPost = async (req, res = response) => {
- 
-    const  [rol]  = await Promise.all([
+
+    const [rol] = await Promise.all([
         SBRTRol.find()
     ]);
-    const resultadosOrdenados = rol.sort((a,b) =>{
+    const orderedResults = rol.sort((a, b) => {
         return Number.parseInt(b.Ide_Rol) - Number.parseInt(a.Ide_Rol)
-      })
-    
-   
-     const Ide=resultadosOrdenados[0].Ide_Rol;
-     const Ide_Rol=Ide+1;
+    })
 
-     const {  Des_DescripcionRol, Est_Habilitado,Emp_Id } = req.body;
-     const role = new SBRTRol({Ide_Rol,Des_DescripcionRol, Est_Habilitado,Emp_Id});
 
-    
+    const Ide = orderedResults[0].Ide_Rol;
+    const Ide_Rol = Ide + 1;
+
+    const { Des_DescripcionRol, Est_Habilitado, Emp_Id } = req.body;
+    const role = new SBRTRol({ Ide_Rol, Des_DescripcionRol, Est_Habilitado, Emp_Id });
+
+
 
     // Guardar en BD
     await role.save();
@@ -47,22 +47,21 @@ const rolPost = async (req, res = response) => {
     });
 }
 //creating a method for updating a record
-const rolPut = async(req, res = response) => {
+const rolPut = async (req, res = response) => {
 
-    
-    const {  Ide_Rol,...resto } = req.body;
-  
-    const rol = await SBRTRol.findOneAndUpdate( {Ide_Rol:Ide_Rol}, resto );
+
+    const { Ide_Rol, ...resto } = req.body;
+
+    const rol = await SBRTRol.findOneAndUpdate({ Ide_Rol: Ide_Rol }, resto);
 
     res.json(rol);
 }
-
 //logical deletion of a user
-const rolDelete = async(req, res = response) => {
+const rolDelete = async (req, res = response) => {
 
     const { Ide_Rol } = req.params;
-    const rol = await SBRTRol.findOneAndUpdate( {Ide_Rol:Ide_Rol}, { Est_Habilitado: false } );
- 
+    const rol = await SBRTRol.findOneAndUpdate({ Ide_Rol: Ide_Rol }, { Est_Habilitado: false });
+
     res.json(rol);
 }
 

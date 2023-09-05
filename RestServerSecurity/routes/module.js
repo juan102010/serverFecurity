@@ -2,21 +2,21 @@ const { Router } = require('express');
 
 const { check } = require('express-validator');
 
-const { validateFields,validateLog,validateJWT } = require('../middlewares');
+const { validateFields, validateLog, validateJWT } = require('../middlewares');
 
-const { moduleGet,modulePost,modulePut,moduleDelete } = require('../controllers/module');
+const { moduleGet, modulePost, modulePut, moduleDelete } = require('../controllers/module');
 
-const {  notExistIdModule } = require('../helpers/db-validators');
+const { notExistIdModule } = require('../helpers/db-validators');
 
 
 
 const router = Router();
 //metodo get
-router.get('/',[
-    
-], moduleGet );
+router.get('/', [
+
+], moduleGet);
 //metodo put
-router.put('/',[
+router.put('/', [
     //Valid token 
     validateJWT,
     //Validations that it is not empty
@@ -24,19 +24,19 @@ router.put('/',[
     check('Ide_Aplicacion', '00023').not().isEmpty(),
     check('Des_DescripcionModulo', '00023').not().isEmpty(),
     //check if the entered id exists
-    check('Ide_Modulo').custom( notExistIdModule ),
+    check('Ide_Modulo').custom(notExistIdModule),
     validateFields
-],modulePut );
+], modulePut);
 //metodo post
-router.post('/',[
+router.post('/', [
     //Valid token 
     validateJWT,
     //Validations that it is not empty
     check('Ide_Aplicacion', '00023').not().isEmpty(),
     check('Des_DescripcionModulo', '00023').not().isEmpty(),
     validateFields
-], modulePost, );
+], modulePost,);
 
 
- 
+
 module.exports = router;

@@ -8,77 +8,78 @@ const { generateJWT } = require('../helpers/generar-jwt');
 //Password and email are correct user status 
 //if they are we generate a token with the function generateJWT
 
-const loginValidation = async(req, res = response) => {
+const loginValidation = async (req, res = response) => {
 
     const { Ide_Usuario, Nom_Dependencia } = req.body;
 
     try {
-      
+
         // Verify if the email exists
         const user = await SBRTUsuario.findOne({ Ide_Usuario });
 
-        
-        if ( !user ) {
+
+        if (!user) {
             return res.status(400).json({
-                code:'00003',
+                code: '00003',
                 msg: 'User / Password are not correct - mail'
             });
         }
-        if (Nom_Dependencia != user.Nom_Dependencia ) {
+        if (Nom_Dependencia != user.Nom_Dependencia) {
             return res.status(400).json({
-                code:'00004',
+                code: '00004',
                 msg: 'User / Password are not correct - password'
             });
         }
 
         // Generar el JWT
-        const token = await generateJWT( user.Ide_Usuario,user.Emp_Id );
+        const token = await generateJWT(user.Ide_Usuario, user.Emp_Id);
         //JSON que se va a devolver
         res.json({
             user,
             token,
-        }) 
+        })
 
     } catch (error) {
         //error si se genera algun error 
         console.log(error)
         res.status(500).json({
-            code:'00006',
+            code: '00006',
             msg: 'Talk to the administrator'
         });
-    }   
+    }
 
 }
-const usersLoginGet = async(req = request, res = response) => {
+//Function to get all registered users in the database
+const usersLoginGet = async (req = request, res = response) => {
     //we give you a paging limit 
-        const { limite = 5, desde = 0 } = req.query;
-      
-        //generates the body that will return
-        const [ users ] = await Promise.all([
+    const { limite = 5, desde = 0 } = req.query;
 
-            SBRTUsuario.find()
-                .skip( Number( desde ) ) 
-                .limit(Number( limite ))
-        ]);
-        //body
-        res.json({
-            users
-        });
-    }
+    //generates the body that will return
+    const [users] = await Promise.all([
+
+        SBRTUsuario.find()
+            .skip(Number(desde))
+            .limit(Number(limite))
+    ]);
+    //body
+    res.json({
+        users
+    });
+}
 //creation of a method to create a new user
-
-const userLoginPost = async(req, res = response) => {
+const userLoginPost = async (req, res = response) => {
     const {
-        Ide_Usuario, 
-        Nom_Dependencia, 
+        Ide_Usuario,
+        Nom_Dependencia,
         Emp_Id
-         } = req.body;
-    const userLog = new SBRTUsuario({ 
-        Ide_Usuario, 
-        Nom_Dependencia, 
-        Emp_Id });
+    } = req.body;
+    const userLog = new SBRTUsuario({
+        Ide_Usuario,
+        Nom_Dependencia,
+        Emp_Id
+    });
 
-   
+
     // Save to BD
     await userLog.save();
 
@@ -86,20 +87,19 @@ const userLoginPost = async(req, res = response) => {
         userLog
     });
 }
-
 //creating a method for updating a record
-const userLoginPut = async(req, res = response) => {
+const userLoginPut = async (req, res = response) => {
 
-    
-    const {  Ide_Usuario,Emp_Id,...resto } = req.body;
-  
-    const usuario = await SBRTUsuario.findOneAndUpdate( {Ide_Usuario:Ide_Usuario}, resto );
+
+    const { Ide_Usuario, Emp_Id, ...resto } = req.body;
+
+    const usuario = await SBRTUsuario.findOneAndUpdate({ Ide_Usuario: Ide_Usuario }, resto);
 
     res.json(usuario);
 }
 
 module.exports = {
-    loginValidation, 
+    loginValidation,
     usersLoginGet,
     userLoginPut,
     userLoginPost

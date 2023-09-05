@@ -16,14 +16,14 @@ const SBRT_FuncionalidadPorRolSchema = Schema({
         type: Number,
         required: [true, 'The Ide_Rol is mandatory'],
     },
-   
+
 
 });
-SBRT_FuncionalidadPorRolSchema.methods.toJSON = function() {
-    const { __v,_id, ...funcionalidadPorRol  } = this.toObject();
-   
+SBRT_FuncionalidadPorRolSchema.methods.toJSON = function () {
+    const { __v, _id, ...funcionalidadPorRol } = this.toObject();
+
     return funcionalidadPorRol;
 }
 
 
-module.exports = model( 'SBRT_FuncionalidadPorRol', SBRT_FuncionalidadPorRolSchema ,'SBRT_FuncionalidadPorRol');
+module.exports = model('SBRT_FuncionalidadPorRol', SBRT_FuncionalidadPorRolSchema, 'SBRT_FuncionalidadPorRol');
