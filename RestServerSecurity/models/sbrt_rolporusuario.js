@@ -12,11 +12,11 @@ const SBRT_RolPorUsuarioSchema = Schema({
     }
 
 });
-SBRT_RolPorUsuarioSchema.methods.toJSON = function() {
-    const { __v,_id, ...rolPorUsuario  } = this.toObject();
-    
+SBRT_RolPorUsuarioSchema.methods.toJSON = function () {
+    const { __v, _id, ...rolPorUsuario } = this.toObject();
+
     return rolPorUsuario;
 }
 
 
-module.exports = model( 'SBRT_RolPorUsuarios', SBRT_RolPorUsuarioSchema ,'SBRT_RolPorUsuario');
+module.exports = model('SBRT_RolPorUsuarios', SBRT_RolPorUsuarioSchema, 'SBRT_RolPorUsuario');

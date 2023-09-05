@@ -2,10 +2,10 @@ const { response } = require('express');
 
 const SBRTRolByUser = require('../models/sbrt_rolporusuario');
 
-
+//Function to return all roles by users 
 const rolByUserGet = async (req = request, res = response) => {
 
-    const [ rolByUser ] = await Promise.all([
+    const [rolByUser] = await Promise.all([
         SBRTRolByUser.find()
     ]);
 
@@ -14,20 +14,20 @@ const rolByUserGet = async (req = request, res = response) => {
     });
 }
 // Method to search and fetch a user by his Ide_Usuario
-const rolGetByIde = async(req, res = response) => {
+const rolGetByIde = async (req, res = response) => {
     //look up the Ide_Usuario to compare it against the database
     const { Ide_Usuario } = req.params;
-    
 
-    const rolByUser = await SBRTRolByUser.findOne({Ide_Usuario} );
+
+    const rolByUser = await SBRTRolByUser.findOne({ Ide_Usuario });
 
     res.json(rolByUser);
 }
-
+//Function to create all the roles by users 
 const rolByUsePost = async (req, res = response) => {
- 
-     const {  Ide_Rol, Ide_Usuario } = req.body;
-     const roleByUser = new SBRTRolByUser({Ide_Rol,Ide_Usuario});
+
+    const { Ide_Rol, Ide_Usuario } = req.body;
+    const roleByUser = new SBRTRolByUser({ Ide_Rol, Ide_Usuario });
 
     // Guardar en BD
     await roleByUser.save();
@@ -37,17 +37,16 @@ const rolByUsePost = async (req, res = response) => {
     });
 }
 //creating a method for updating a record
-const rolbyuserPut = async(req, res = response) => {
-     //look up the Ide_Usuario to compare it against the database
+const rolbyuserPut = async (req, res = response) => {
+    //look up the Ide_Usuario to compare it against the database
     const { Ide_Usuario } = req.params;
-    
-    const resto  = req.body;
-  
-    const rolbyuser = await SBRTRolByUser.findOneAndUpdate( {Ide_Usuario:Ide_Usuario}, resto );
+
+    const rolByUserBody = req.body;
+
+    const rolbyuser = await SBRTRolByUser.findOneAndUpdate({ Ide_Usuario: Ide_Usuario }, rolByUserBody);
 
     res.json(rolbyuser);
 }
-
 
 
 

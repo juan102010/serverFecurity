@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
 
-
-const dbConnectionSec = async() => {
+//It generates the connection to the database
+//we want to enter by means of the parameter MONGODBSEC_CNN
+//located in the environment variables 
+const dbConnectionSec = async () => {
 
     try {
 
-        await mongoose.connect( process.env.MONGODBSEC_CNN, {
+        await mongoose.connect(process.env.MONGODBSEC_CNN, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
-    
+
         console.log('We are connected to the Security');
 
     } catch (error) {
@@ -21,8 +23,7 @@ const dbConnectionSec = async() => {
 }
 
 
-
 module.exports = {
-  
+
     dbConnectionSec
 }

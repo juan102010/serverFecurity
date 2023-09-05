@@ -2,22 +2,22 @@ const { Router } = require('express');
 
 const { check } = require('express-validator');
 
-const { validateFields,validateLog,validateJWT } = require('../middlewares');
+const { validateFields, validateLog, validateJWT } = require('../middlewares');
 
-const { rolGet,rolPost,rolPut,rolDelete } = require('../controllers/rol');
+const { rolGet, rolPost, rolPut, rolDelete } = require('../controllers/rol');
 
-const {  existeRol } = require('../helpers/db-validators');
+const { existeRol } = require('../helpers/db-validators');
 
 
 
 const router = Router();
 //metodo get
-router.get('/',[
+router.get('/', [
     //Valid that the token that is sent by parameters is correct.
     validateLog,
-], rolGet );
+], rolGet);
 //metodo put
-router.put('/',[
+router.put('/', [
     //Valid token 
     validateJWT,
     //Validations that it is not empty
@@ -25,26 +25,26 @@ router.put('/',[
     check('Des_DescripcionRol', '00023').not().isEmpty(),
     check('Emp_Id', '00023').not().isEmpty(),
     //check if the entered id exists
-    check('Ide_Rol').custom( existeRol ),
+    check('Ide_Rol').custom(existeRol),
     validateFields
-],rolPut );
+], rolPut);
 //metodo post
-router.post('/',[
+router.post('/', [
     //Valid token 
     validateJWT,
     //Validations that it is not empty
     check('Des_DescripcionRol', '00023').not().isEmpty(),
     check('Emp_Id', '00023').not().isEmpty(),
     validateFields
-], rolPost, );
+], rolPost,);
 //metodo delete
 router.delete('/:Ide_Rol', [
     //Valid token 
     validateJWT,
     //check if the entered id exists
-    check('Ide_Rol').custom( existeRol ),
-],rolDelete, );
+    check('Ide_Rol').custom(existeRol),
+], rolDelete,);
 
 
- 
+
 module.exports = router;

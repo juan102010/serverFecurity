@@ -11,12 +11,12 @@ const SBRT_EmpresaReportesSchema = Schema({
     Ere_NombreReporte: {
         type: String,
         required: [true, 'The Ere_NombreReporte is mandatory'],
-        
+
     },
     Ere_Url_reporte: {
         type: String,
         required: [true, 'The Ere_Url_reporte is mandatory'],
-        
+
     },
     Ere_Estado: {
         type: Boolean,
@@ -24,11 +24,11 @@ const SBRT_EmpresaReportesSchema = Schema({
     },
 
 });
-SBRT_EmpresaReportesSchema.methods.toJSON = function() {
-    const { __v,_id, ...empresaReportes  } = this.toObject();
-   
+SBRT_EmpresaReportesSchema.methods.toJSON = function () {
+    const { __v, _id, ...empresaReportes } = this.toObject();
+
     return empresaReportes;
 }
 
 
-module.exports = model( 'SBRT_EmpresaReporte', SBRT_EmpresaReportesSchema ,'SBRT_EmpresaReportes');
+module.exports = model('SBRT_EmpresaReporte', SBRT_EmpresaReportesSchema, 'SBRT_EmpresaReportes');

@@ -13,20 +13,20 @@ const SBRT_FuncionalidadSchema = Schema({
     Des_DescripcionFuncionalidad: {
         type: String,
         required: [true, 'The Des_DescripcionFuncionalidad is mandatory'],
-        
+
     },
     Descripcion: {
         type: String,
         required: [true, 'The Descripcion is mandatory'],
-        
+
     }
 
 });
-SBRT_FuncionalidadSchema.methods.toJSON = function() {
-    const { __v,_id, ...funcionalidad  } = this.toObject();
-   
+SBRT_FuncionalidadSchema.methods.toJSON = function () {
+    const { __v, _id, ...funcionalidad } = this.toObject();
+
     return funcionalidad;
 }
 
 
-module.exports = model( 'SBRT_Funcionalidad', SBRT_FuncionalidadSchema ,'SBRT_Funcionalidad');
+module.exports = model('SBRT_Funcionalidad', SBRT_FuncionalidadSchema, 'SBRT_Funcionalidad');
