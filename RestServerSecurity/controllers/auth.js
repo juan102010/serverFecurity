@@ -1,8 +1,8 @@
 const { response } = require('express');
-
-const SBRTUsuario = require('../models/sbrt_usuario');
+const { User, Empresa, RolByUser } = require('../models/');
 
 const { generateJWT } = require('../helpers/generar-jwt');
+const { encriptar } = require('../helpers/encryptor');
 
 //in loginValidation we will verify that:
 //Password and email are correct user status 
@@ -11,11 +11,14 @@ const { generateJWT } = require('../helpers/generar-jwt');
 const loginValidation = async (req, res = response) => {
 
     const { Ide_Usuario, Nom_Dependencia } = req.body;
-
     try {
 
         // Verify if the email exists
-        const user = await SBRTUsuario.findOne({ Ide_Usuario });
+        const user = await User.findOne({ Ide_Usuario });
+        const company = await Empresa.findOne({ Emp_Id: user.Emp_Id });
+        const urlCompany = encriptar(company.Emp_UrlEsquema);
+        const rolByUser = await RolByUser.findOne({ Ide_Usuario: user.Ide_Usuario });
+
 
 
         if (!user) {
@@ -24,6 +27,7 @@ const loginValidation = async (req, res = response) => {
                 msg: 'User / Password are not correct - mail'
             });
         }
+
         if (Nom_Dependencia != user.Nom_Dependencia) {
             return res.status(400).json({
                 code: '00004',
@@ -31,8 +35,9 @@ const loginValidation = async (req, res = response) => {
             });
         }
 
+
         // Generar el JWT
-        const token = await generateJWT(user.Ide_Usuario, user.Emp_Id);
+        const token = await generateJWT(user.Ide_Usuario, user.Emp_Id, urlCompany, rolByUser.Ide_Rol);
         //JSON que se va a devolver
         res.json({
             user,
@@ -57,7 +62,7 @@ const usersLoginGet = async (req = request, res = response) => {
     //generates the body that will return
     const [users] = await Promise.all([
 
-        SBRTUsuario.find()
+        User.find()
             .skip(Number(desde))
             .limit(Number(limite))
     ]);
@@ -73,12 +78,14 @@ const userLoginPost = async (req, res = response) => {
         Nom_Dependencia,
         Emp_Id
     } = req.body;
-    const userLog = new SBRTUsuario({
+    const userLog = new User({
         Ide_Usuario,
         Nom_Dependencia,
         Emp_Id
     });
 
+    // Encrypt password
+    userLog.Nom_Dependencia = encriptar(Nom_Dependencia);
 
     // Save to BD
     await userLog.save();
@@ -91,9 +98,14 @@ const userLoginPost = async (req, res = response) => {
 const userLoginPut = async (req, res = response) => {
 
 
-    const { Ide_Usuario, Emp_Id, ...resto } = req.body;
+    const { Ide_Usuario, Nom_Dependencia, ...resto } = req.body;
 
-    const usuario = await SBRTUsuario.findOneAndUpdate({ Ide_Usuario: Ide_Usuario }, resto);
+    if (Nom_Dependencia) {
+        // Encrypt password
+        userLog.Nom_Dependencia = encriptar(Nom_Dependencia);
+    }
+
+    const usuario = await User.findOneAndUpdate({ Ide_Usuario: Ide_Usuario }, resto);
 
     res.json(usuario);
 }
