@@ -3,20 +3,25 @@ const { Schema, model } = require('mongoose');
 const SBRT_UsuariosSchema = Schema({
     Ide_Usuario: {
         type: String,
-        required: [true, 'El Ide_Usuario es obligatorio'],
+        required: [true, 'The Ide_Usuario is mandatory'],
         unique: true
     },
     Nom_Dependencia: {
         type: String,
-        required: [true, 'El Nom_Dependencia es obligatorio'],
-        
+        required: [true, 'The Nom_Dependencia is mandatory'],
+
     },
     Emp_Id: {
         type: Number,
-        required: [true, 'El Emp_Id es obligatorio'],  
+        required: [true, 'The Emp_Id is mandatory'],
 
     },
 
 });
 
-module.exports = model( 'SBRT_Usuario', SBRT_UsuariosSchema ,'SBRT_Usuario');
+SBRT_UsuariosSchema.methods.toJSON = function () {
+    const { __v, _id, ...usuario } = this.toObject();
+    return usuario;
+}
+
+module.exports = model('SBRT_Usuario', SBRT_UsuariosSchema, 'SBRT_Usuario');
