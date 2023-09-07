@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { validateFields, validateJWT } = require('../middlewares');
 
-const { applicationGet, applicationPost, applicationPut, applicationDelete } = require('../controllers/application');
+const { applicationGet, applicationPost, applicationPut, applicationDelete } = require('../controllers/crud_basics/application');
 
 const { notExistIdApplication } = require('../helpers/db-validators');
 

@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const SBRTFunctionalityByRole = require('../models/sbrt_funcionalidad_por_rol');
+const SBRTFunctionalityByRole = require('../../models/sbrt_funcionalidad_por_rol');
 
 //Function to obtain all the functionalities by role recorded in the database
 const functionalityByRoleGet = async (req = request, res = response) => {

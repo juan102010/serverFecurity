@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const SBRTCompany = require('../models/sbrt_Empresa');
+const SBRTCompany = require('../../models/sbrt_Empresa');
 
 //Function to get all companies registered in the database
 const companyGet = async (req = request, res = response) => {

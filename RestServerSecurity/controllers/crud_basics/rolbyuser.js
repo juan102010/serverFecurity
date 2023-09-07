@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const SBRTRolByUser = require('../models/sbrt_rolporusuario');
+const SBRTRolByUser = require('../../models/sbrt_rolporusuario');
 
 //Function to return all roles by users 
 const rolByUserGet = async (req = request, res = response) => {

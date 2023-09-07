@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { validateFields, validateLog, validateJWT } = require('../middlewares');
 
-const { rolByUserGet, rolByUsePost, rolbyuserPut, rolGetByIde } = require('../controllers/rolbyuser');
+const { rolByUserGet, rolByUsePost, rolbyuserPut, rolGetByIde } = require('../controllers/crud_basics/rolbyuser');
 
 const { existeRol, notExistemailRolByUser, existsemailRolByUser, emailExistsLogin } = require('../helpers/db-validators');
 

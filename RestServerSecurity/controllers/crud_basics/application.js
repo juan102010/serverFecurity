@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const SBRTApplication = require('../models/sbrt_aplicacion');
+const SBRTApplication = require('../../models/sbrt_aplicacion');
 
 //Function to get all applications registered in the database
 const applicationGet = async (req = request, res = response) => {

@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const SBRTEmpresaReporte = require('../models/sbrt_empresareportes');
+const SBRTEmpresaReporte = require('../../models/sbrt_empresareportes');
 
 //Function to obtain all the reports of companies registered in the database
 const companyReportGet = async (req = request, res = response) => {

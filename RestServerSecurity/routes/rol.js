@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { validateFields, validateLog, validateJWT } = require('../middlewares');
 
-const { rolGet, rolPost, rolPut, rolDelete } = require('../controllers/rol');
+const { rolGet, rolPost, rolPut, rolDelete } = require('../controllers/crud_basics/rol');
 
 const { existeRol } = require('../helpers/db-validators');
 

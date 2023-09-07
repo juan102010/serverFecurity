@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { validateFields, validateJWT } = require('../middlewares');
 
-const { functionalityByRoleGet, functionalityByRolePost, functionalityByRolePut } = require('../controllers/functionality_by_role');
+const { functionalityByRoleGet, functionalityByRolePost, functionalityByRolePut } = require('../controllers/crud_basics/functionality_by_role');
 
 const { notExistIdfunctionalityByRole, notExistIdModule, notExistIdApplication, existeRol } = require('../helpers/db-validators');
 

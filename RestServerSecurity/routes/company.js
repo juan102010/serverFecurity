@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 
 const { validateFields, validateJWT } = require('../middlewares');
 
-const { companyGet, companyPost, companyPut, companyDelete } = require('../controllers/company');
+const { companyGet, companyPost, companyPut, companyDelete } = require('../controllers/crud_basics/company');
 
 const { notExistIdCompany } = require('../helpers/db-validators');
 
