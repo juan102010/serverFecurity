@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const SBRTModule = require('../models/sbrt_modulo');
+const SBRTModule = require('../../models/sbrt_modulo');
 
 //Function to get all modules registered in the database
 const moduleGet = async (req = request, res = response) => {

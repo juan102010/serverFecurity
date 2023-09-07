@@ -1,8 +1,8 @@
 const { response } = require('express');
-const { User, Empresa, RolByUser } = require('../models/');
+const { User, Empresa, RolByUser } = require('../../models');
 
-const { generateJWT } = require('../helpers/generar-jwt');
-const { encriptar } = require('../helpers/encryptor');
+const { generateJWT } = require('../../helpers/generar-jwt');
+const { encriptar } = require('../../helpers/encryptor');
 
 //in loginValidation we will verify that:
 //Password and email are correct user status 

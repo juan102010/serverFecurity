@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 const { validateFields, validateLog, validateJWT } = require('../middlewares');
 
 
-const { loginValidation, usersLoginGet, userLoginPut, userLoginPost } = require('../controllers/auth');
+const { loginValidation, usersLoginGet, userLoginPut, userLoginPost } = require('../controllers/crud_basics/auth');
 
 const { emailExists, emailExistsLogin } = require('../helpers/db-validators');
 

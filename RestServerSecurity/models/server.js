@@ -18,7 +18,8 @@ class Server {
             company: '/api/company',
             modules: '/api/module',
             functionality: '/api/functionality',
-            functionalityByRole: '/api/functionalityByRole'
+            functionalityByRole: '/api/functionalityByRole',
+            hasPermissions: '/api/hasPermissions'
 
         }
 
@@ -60,6 +61,7 @@ class Server {
         this.app.use(this.paths.modules, require('../routes/module'));
         this.app.use(this.paths.functionality, require('../routes/functionality'));
         this.app.use(this.paths.functionalityByRole, require('../routes/functionality_by_role'));
+        this.app.use(this.paths.hasPermissions, require('../routes/has_permissions'));
 
     }
 

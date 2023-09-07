@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const SBRTFunctionality = require('../models/sbrt_funcionalidad');
+const SBRTFunctionality = require('../../models/sbrt_funcionalidad');
 
 //Function to obtain all the functionalities registered in the database
 const functionalityGet = async (req = request, res = response) => {

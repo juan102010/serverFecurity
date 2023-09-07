@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const SBRTRol = require('../models/sbrt_rol');
+const SBRTRol = require('../../models/sbrt_rol');
 
 //Function to obtain all the roles registered in the database.
 const rolGet = async (req = request, res = response) => {
